@@ -13,7 +13,7 @@ public class InformationModel {
     private String overview;
     private String release_date;
     private List<Integer> genre_ids;
-    private  int id;
+    private int id;
     private String original_title;
     private String original_language;
     private String title;
