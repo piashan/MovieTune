@@ -23,7 +23,8 @@ public class TabFragmentPageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return new MovieFragment();
+
+        return new MovieFragment().newInstance(position);
     }
 
     @Override

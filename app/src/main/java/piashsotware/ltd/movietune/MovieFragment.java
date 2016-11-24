@@ -35,10 +35,18 @@ public class MovieFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private MovieAdapter mMovieAdapter;
     private ProgressBar mProgressBar;
+    private int mAdapterPosition;
 
     public MovieFragment() {
         // Required empty public constructor
     }
+    public MovieFragment newInstance(int position) {
+        // Required empty public constructor
+        MovieFragment fragment = new MovieFragment();
+        fragment.mAdapterPosition = position;
+        return fragment;
+    }
+
 
 
     @Override
@@ -56,12 +64,23 @@ public class MovieFragment extends Fragment {
         mMovieRecyclerView.setLayoutManager(mLayoutManager);
 
 
+        if (mAdapterPosition == 0){
+            newRelieseMovie();
+        }else if (mAdapterPosition == 1){
+            topRatedMovie();
+        }else if (mAdapterPosition == 2){
+            upCommingMovie();
+        }
+
+        return view;
+    }
+
+
+    public void newRelieseMovie(){
         mApiMovieInterface.newRelieseMovieNetworkCall().enqueue(
                 new Callback<NewReliesePayloadModel>() {
                     @Override
                     public void onResponse(Call<NewReliesePayloadModel> call, Response<NewReliesePayloadModel> response) {
-                        Log.e(TAG, "onResponse: "+response.body().getResults().get(0).getPoster_path() );
-
                         if (response.isSuccessful()){
                             mProgressBar.setVisibility(View.GONE);
                             mMovieRecyclerView.setVisibility(View.VISIBLE);
@@ -78,8 +97,47 @@ public class MovieFragment extends Fragment {
                     }
                 }
         );
-
-        return view;
     }
 
+    public void topRatedMovie(){
+        mApiMovieInterface.topRatedMovieNetworkCall().enqueue(
+                new Callback<NewReliesePayloadModel>() {
+                    @Override
+                    public void onResponse(Call<NewReliesePayloadModel> call, Response<NewReliesePayloadModel> response) {
+                        if (response.isSuccessful()){
+                            mProgressBar.setVisibility(View.GONE);
+                            mMovieRecyclerView.setVisibility(View.VISIBLE);
+                            mMovieAdapter = new MovieAdapter(getActivity(), response.body().getResults());
+                            mMovieRecyclerView.setAdapter(mMovieAdapter);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<NewReliesePayloadModel> call, Throwable t) {
+                        Log.e(TAG, "onFailure: "+t.toString() );
+                    }
+                }
+        );
+    }
+
+    public void upCommingMovie(){
+        mApiMovieInterface.upCommingMovieNetworkCall().enqueue(
+                new Callback<NewReliesePayloadModel>() {
+                    @Override
+                    public void onResponse(Call<NewReliesePayloadModel> call, Response<NewReliesePayloadModel> response) {
+                        if (response.isSuccessful()){
+                            mProgressBar.setVisibility(View.GONE);
+                            mMovieRecyclerView.setVisibility(View.VISIBLE);
+                            mMovieAdapter = new MovieAdapter(getActivity(), response.body().getResults());
+                            mMovieRecyclerView.setAdapter(mMovieAdapter);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<NewReliesePayloadModel> call, Throwable t) {
+                        Log.e(TAG, "onFailure: "+t.toString() );
+                    }
+                }
+        );
+    }
 }
