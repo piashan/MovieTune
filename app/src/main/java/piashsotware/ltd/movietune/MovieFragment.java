@@ -12,9 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import piashsotware.ltd.movietune.adapter.MovieAdapter;
 import piashsotware.ltd.movietune.api.ApiClient;
 import piashsotware.ltd.movietune.api.ApiMovieInterface;
