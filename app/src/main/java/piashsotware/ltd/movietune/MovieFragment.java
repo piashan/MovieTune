@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,7 @@ public class MovieFragment extends Fragment {
                             mMovieRecyclerView.setVisibility(View.VISIBLE);
                             mMovieAdapter = new MovieAdapter(getActivity(), response.body().getResults());
                             mMovieRecyclerView.setAdapter(mMovieAdapter);
+                            recyclerViewClick();
                         }
 
                     }
@@ -109,6 +111,7 @@ public class MovieFragment extends Fragment {
                             mMovieRecyclerView.setVisibility(View.VISIBLE);
                             mMovieAdapter = new MovieAdapter(getActivity(), response.body().getResults());
                             mMovieRecyclerView.setAdapter(mMovieAdapter);
+                            recyclerViewClick();
                         }
                     }
 
@@ -130,12 +133,25 @@ public class MovieFragment extends Fragment {
                             mMovieRecyclerView.setVisibility(View.VISIBLE);
                             mMovieAdapter = new MovieAdapter(getActivity(), response.body().getResults());
                             mMovieRecyclerView.setAdapter(mMovieAdapter);
+                            recyclerViewClick();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<NewReliesePayloadModel> call, Throwable t) {
                         Log.e(TAG, "onFailure: "+t.toString() );
+                    }
+                }
+        );
+    }
+
+    public void recyclerViewClick(){
+        mMovieAdapter.setOnItemClickListener(
+                new MovieAdapter.RVClickListener() {
+                    @Override
+                    public void onItemClick(int position, View v) {
+
+                        Toast.makeText(getActivity(), "clcik is working", Toast.LENGTH_SHORT).show();
                     }
                 }
         );

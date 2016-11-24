@@ -23,6 +23,7 @@ import piashsotware.ltd.movietune.datamodel.InformationModel;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder>{
     private Context mContext;
     private List<InformationModel> mStringList;
+    private RVClickListener mRVClickListener;
 
     public MovieAdapter(Context mContex, List<InformationModel> mStringList) {
         this.mContext = mContex;
@@ -53,11 +54,25 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return mStringList.size();
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    public void setOnItemClickListener(RVClickListener myClickListener) {
+        this.mRVClickListener = myClickListener;
+    }
+    public interface RVClickListener {
+        void onItemClick(int position, View v);
+    }
+
+    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView mImageViewMoviePoster;
         public MovieViewHolder(View itemView) {
             super(itemView);
             mImageViewMoviePoster = (ImageView)itemView.findViewById(R.id.imageViewForMovie);
+            itemView.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            mRVClickListener.onItemClick(getAdapterPosition(), view);
         }
     }
 }
