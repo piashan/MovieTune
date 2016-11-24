@@ -39,7 +39,7 @@ public class ApiClient {
                 .build();
         sRetrofit = new Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl("")
+                .baseUrl("https://api.themoviedb.org/3/movie/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

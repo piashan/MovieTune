@@ -28,6 +28,7 @@ import retrofit2.Retrofit;
  */
 public class MovieFragment extends Fragment {
 
+    private final String TAG = "Test";
     private ApiMovieInterface mApiMovieInterface;
     private RecyclerView mMovieRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -59,6 +60,20 @@ public class MovieFragment extends Fragment {
         mMovieRecyclerView.setAdapter(mMovieAdapter);
 
         mApiMovieInterface.newRelieseMovieNetworkCall().enqueue(
+                new Callback<NewReliesePayloadModel>() {
+                    @Override
+                    public void onResponse(Call<NewReliesePayloadModel> call, Response<NewReliesePayloadModel> response) {
+                        Log.e(TAG, "onResponse: "+response.body().getPage() );
+                    }
+
+                    @Override
+                    public void onFailure(Call<NewReliesePayloadModel> call, Throwable t) {
+
+                        Log.e(TAG, "onFailure: "+t.toString() );
+                    }
+                }
+        );
+        /*mApiMovieInterface.newRelieseMovieNetworkCall().enqueue(
                 new Callback<List<NewReliesePayloadModel>>() {
                     @Override
                     public void onResponse(Call<List<NewReliesePayloadModel>> call, Response<List<NewReliesePayloadModel>> response) {
@@ -71,7 +86,7 @@ public class MovieFragment extends Fragment {
                         Log.e("Test", "onFailure: "+t.toString() );
                     }
                 }
-        );
+        );*/
         return view;
     }
 

@@ -14,5 +14,42 @@ public class NewReliesePayloadModel {
     private int total_pages;
     private int total_results;
 
+    public NewReliesePayloadModel(int page, List<InformationModel> results, Dates dates, int total_pages, int total_results) {
+        this.page = page;
+        this.results = results;
+        this.dates = dates;
+        this.total_pages = total_pages;
+        this.total_results = total_results;
+    }
 
+    public int getPage() {
+        return page;
+    }
+
+    public List<InformationModel> getResults() {
+        return results;
+    }
+
+    public Dates getDates() {
+        return dates;
+    }
+
+    public int getTotal_pages() {
+        return total_pages;
+    }
+
+    public int getTotal_results() {
+        return total_results;
+    }
+
+    @Override
+    public String toString() {
+        return "NewReliesePayloadModel{" +
+                "page=" + page +
+                ", results=" + results +
+                ", dates=" + dates +
+                ", total_pages=" + total_pages +
+                ", total_results=" + total_results +
+                '}';
+    }
 }
