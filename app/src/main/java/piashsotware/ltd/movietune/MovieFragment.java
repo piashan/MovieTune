@@ -33,7 +33,6 @@ public class MovieFragment extends Fragment {
     private RecyclerView mMovieRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private MovieAdapter mMovieAdapter;
-    private List<String> mDataList;
 
     public MovieFragment() {
         // Required empty public constructor
@@ -50,20 +49,18 @@ public class MovieFragment extends Fragment {
         mApiMovieInterface = retrofit.create(ApiMovieInterface.class);
         mMovieRecyclerView = (RecyclerView)view.findViewById(R.id.movieRecyclerView);
 
-        mDataList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            mDataList.add("testing"+i);
-        }
         mLayoutManager =  new GridLayoutManager(getActivity(), 2);
         mMovieRecyclerView.setLayoutManager(mLayoutManager);
-        mMovieAdapter = new MovieAdapter(getActivity(), mDataList);
-        mMovieRecyclerView.setAdapter(mMovieAdapter);
+
 
         mApiMovieInterface.newRelieseMovieNetworkCall().enqueue(
                 new Callback<NewReliesePayloadModel>() {
                     @Override
                     public void onResponse(Call<NewReliesePayloadModel> call, Response<NewReliesePayloadModel> response) {
-                        Log.e(TAG, "onResponse: "+response.body().getPage() );
+                        Log.e(TAG, "onResponse: "+response.body().getResults().get(0).getPoster_path() );
+
+                        mMovieAdapter = new MovieAdapter(getActivity(), response.body().getResults());
+                        mMovieRecyclerView.setAdapter(mMovieAdapter);
                     }
 
                     @Override
@@ -73,20 +70,7 @@ public class MovieFragment extends Fragment {
                     }
                 }
         );
-        /*mApiMovieInterface.newRelieseMovieNetworkCall().enqueue(
-                new Callback<List<NewReliesePayloadModel>>() {
-                    @Override
-                    public void onResponse(Call<List<NewReliesePayloadModel>> call, Response<List<NewReliesePayloadModel>> response) {
-                        Log.e("Test", "onResponse: working working" );
-                    }
 
-                    @Override
-                    public void onFailure(Call<List<NewReliesePayloadModel>> call, Throwable t) {
-
-                        Log.e("Test", "onFailure: "+t.toString() );
-                    }
-                }
-        );*/
         return view;
     }
 
