@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class MovieFragment extends Fragment {
     private RecyclerView mMovieRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private MovieAdapter mMovieAdapter;
+    private ProgressBar mProgressBar;
 
     public MovieFragment() {
         // Required empty public constructor
@@ -48,6 +50,7 @@ public class MovieFragment extends Fragment {
         Retrofit retrofit = ApiClient.getInstance(getActivity());
         mApiMovieInterface = retrofit.create(ApiMovieInterface.class);
         mMovieRecyclerView = (RecyclerView)view.findViewById(R.id.movieRecyclerView);
+        mProgressBar = (ProgressBar)view.findViewById(R.id.progressBar);
 
         mLayoutManager =  new GridLayoutManager(getActivity(), 2);
         mMovieRecyclerView.setLayoutManager(mLayoutManager);
@@ -59,8 +62,13 @@ public class MovieFragment extends Fragment {
                     public void onResponse(Call<NewReliesePayloadModel> call, Response<NewReliesePayloadModel> response) {
                         Log.e(TAG, "onResponse: "+response.body().getResults().get(0).getPoster_path() );
 
-                        mMovieAdapter = new MovieAdapter(getActivity(), response.body().getResults());
-                        mMovieRecyclerView.setAdapter(mMovieAdapter);
+                        if (response.isSuccessful()){
+                            mProgressBar.setVisibility(View.GONE);
+                            mMovieRecyclerView.setVisibility(View.VISIBLE);
+                            mMovieAdapter = new MovieAdapter(getActivity(), response.body().getResults());
+                            mMovieRecyclerView.setAdapter(mMovieAdapter);
+                        }
+
                     }
 
                     @Override

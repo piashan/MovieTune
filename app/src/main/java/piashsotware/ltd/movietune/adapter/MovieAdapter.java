@@ -46,9 +46,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                 .load("http://image.tmdb.org/t/p/w500"+mStringList.get(position).getPoster_path())
                 .thumbnail(thumbnailRequest)
                 .into(holder.mImageViewMoviePoster);
-
-        Log.e("Yo yo", "onBindViewHolder: "+ mStringList.get(position).getPoster_path());
-       // holder.mImageViewMoviePoster.setText(mStringList.get(position));
     }
 
     @Override
