@@ -16,9 +16,9 @@ public interface ApiMovieInterface {
     @GET("now_playing?api_key=c37d3b40004717511adb2c1fbb15eda4& page=1")
     Call<NewReliesePayloadModel> newRelieseMovieNetworkCall();
 
-    @GET("https://api.themoviedb.org/3/movie/top_rated?api_key=c37d3b40004717511adb2c1fbb15eda4&page=1")
+    @GET("top_rated?api_key=c37d3b40004717511adb2c1fbb15eda4&page=1")
     Call<NewReliesePayloadModel> topRatedMovieNetworkCall();
 
-    @GET("https://api.themoviedb.org/3/movie/upcoming?api_key=c37d3b40004717511adb2c1fbb15eda4&page=1")
+    @GET("upcoming?api_key=c37d3b40004717511adb2c1fbb15eda4&page=1")
     Call<NewReliesePayloadModel> upCommingMovieNetworkCall();
 }

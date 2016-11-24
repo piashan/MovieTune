@@ -1,4 +1,4 @@
-package piashsotware.ltd.movietune;
+package piashsotware.ltd.movietune.fragment;
 
 
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import piashsotware.ltd.movietune.R;
 import piashsotware.ltd.movietune.adapter.MovieAdapter;
 import piashsotware.ltd.movietune.api.ApiClient;
 import piashsotware.ltd.movietune.api.ApiMovieInterface;

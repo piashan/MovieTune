@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mAdapter = new TabFragmentPageAdapter(getSupportFragmentManager(), getApplication());
+        mAdapter = new TabFragmentPageAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
     }
