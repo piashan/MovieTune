@@ -28,7 +28,7 @@
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:id="@+id/detailImage"
             android:scaleType="centerCrop"
             android:src="@drawable/splash_screen"/>
@@ -38,7 +38,7 @@
             android:layout_height="60dp"
             android:orientation="horizontal"
             android:background="#a1141515"
-            android:layout_marginTop="190dp">
+            android:layout_marginTop="140dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -146,7 +146,6 @@
 
             </LinearLayout>
 
-
         </LinearLayout>
     </RelativeLayout>
 <TextView
@@ -156,6 +155,7 @@
     android:maxLines="3"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
+    android:layout_marginTop="8dp"
     android:text="goog"
     android:textColor="#b1b1b1"
     android:textSize="15sp" />
@@ -166,12 +166,113 @@
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:background="#b3b3b3"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="8dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_marginLeft="16dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#b1b1b1"
+                    android:text="Production Company"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#b1b1b1"
+                    android:textSize="17sp"
+                    android:text="Columbia Picturs"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#b1b1b1"
+                    android:text="Production Countries"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#b1b1b1"
+                    android:textSize="17sp"
+                    android:text="USA"/>
+            </LinearLayout>
 
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="2"
+            android:layout_marginLeft="16dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#b1b1b1"
+                    android:text="Budget"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#b1b1b1"
+                    android:textSize="17sp"
+                    android:text="$15400000"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:textColor="#b1b1b1"
+                    android:text="Language"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#b1b1b1"
+                    android:textSize="17sp"
+                    android:text="English"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="#b3b3b3"
+        android:layout_marginTop="8dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"
         android:text="Similar Movie"
         android:textColor="#b1b1b1"
