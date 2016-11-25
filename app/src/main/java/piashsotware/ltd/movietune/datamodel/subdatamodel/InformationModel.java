@@ -1,4 +1,4 @@
-package piashsotware.ltd.movietune.datamodel;
+package piashsotware.ltd.movietune.datamodel.subdatamodel;
 
 import java.util.List;
 

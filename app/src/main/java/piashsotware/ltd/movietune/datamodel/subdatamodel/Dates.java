@@ -1,4 +1,4 @@
-package piashsotware.ltd.movietune.datamodel;
+package piashsotware.ltd.movietune.datamodel.subdatamodel;
 
 /**
  * Created by piash on 11/24/16.

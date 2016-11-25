@@ -2,7 +2,6 @@ package piashsotware.ltd.movietune.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import piashsotware.ltd.movietune.R;
-import piashsotware.ltd.movietune.datamodel.InformationModel;
+import piashsotware.ltd.movietune.datamodel.subdatamodel.InformationModel;
 
 /**
  * Created by piash on 11/24/16.

@@ -2,6 +2,9 @@ package piashsotware.ltd.movietune.datamodel;
 
 import java.util.List;
 
+import piashsotware.ltd.movietune.datamodel.subdatamodel.Dates;
+import piashsotware.ltd.movietune.datamodel.subdatamodel.InformationModel;
+
 /**
  * Created by piash on 11/24/16.
  */
