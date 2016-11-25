@@ -4,6 +4,7 @@ import java.util.List;
 
 import piashsotware.ltd.movietune.datamodel.subdatamodel.Genres;
 import piashsotware.ltd.movietune.datamodel.subdatamodel.ProductionCompanies;
+import piashsotware.ltd.movietune.datamodel.subdatamodel.ProductionCountries;
 import piashsotware.ltd.movietune.datamodel.subdatamodel.SpokenLanguage;
 
 /**
@@ -26,6 +27,7 @@ public class MovieDetailPayloadModel {
     private double popularity;
     private String poster_path;
     private List<ProductionCompanies> production_companies;
+    private List<ProductionCountries> production_countries;
     private String release_date;
     private int revenue;
     private int runtime;
@@ -37,7 +39,7 @@ public class MovieDetailPayloadModel {
     private double vote_average;
     private int vote_count;
 
-    public MovieDetailPayloadModel(boolean adult, String backdrop_path, String belongs_to_collection, int budget, List<Genres> genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, double popularity, String poster_path, List<ProductionCompanies> production_companies, String release_date, int revenue, int runtime, List<SpokenLanguage> spoken_languages, String status, String tagline, String title, boolean video, double vote_average, int vote_count) {
+    public MovieDetailPayloadModel(boolean adult, String backdrop_path, String belongs_to_collection, int budget, List<Genres> genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, double popularity, String poster_path, List<ProductionCompanies> production_companies, List<ProductionCountries> production_countries, String release_date, int revenue, int runtime, List<SpokenLanguage> spoken_languages, String status, String tagline, String title, boolean video, double vote_average, int vote_count) {
         this.adult = adult;
         this.backdrop_path = backdrop_path;
         this.belongs_to_collection = belongs_to_collection;
@@ -52,6 +54,7 @@ public class MovieDetailPayloadModel {
         this.popularity = popularity;
         this.poster_path = poster_path;
         this.production_companies = production_companies;
+        this.production_countries = production_countries;
         this.release_date = release_date;
         this.revenue = revenue;
         this.runtime = runtime;
@@ -120,6 +123,10 @@ public class MovieDetailPayloadModel {
         return production_companies;
     }
 
+    public List<ProductionCountries> getProduction_countries() {
+        return production_countries;
+    }
+
     public String getRelease_date() {
         return release_date;
     }
@@ -177,6 +184,7 @@ public class MovieDetailPayloadModel {
                 ", popularity=" + popularity +
                 ", poster_path='" + poster_path + '\'' +
                 ", production_companies=" + production_companies +
+                ", production_countries=" + production_countries +
                 ", release_date='" + release_date + '\'' +
                 ", revenue=" + revenue +
                 ", runtime=" + runtime +

@@ -47,6 +47,10 @@ public class MovieDetailFragment extends Fragment {
     private ImageView mImageViewDetailPoster;
     private TextView mTextViewReleaseYear;
     private TextView mTextViewMovieCategory;
+    private TextView mTextViewPcompany;
+    private TextView mtextViewPCountry;
+    private TextView mTextViewBudget;
+    private TextView mTextViewLanguage;
     public MovieDetailFragment() {
         // Required empty public constructor
     }
@@ -66,6 +70,10 @@ public class MovieDetailFragment extends Fragment {
         mTextViewPopularity = (TextView)view.findViewById(R.id.textViewPopularity);
         mTextViewReleaseYear = (TextView)view.findViewById(R.id.textViewReleaseYear);
         mTextViewMovieCategory = (TextView)view.findViewById(R.id.textViewMoiveCategory);
+        mTextViewPcompany = (TextView)view.findViewById(R.id.textViewPCompanyName);
+        mtextViewPCountry = (TextView)view.findViewById(R.id.textViewPCountry);
+        mTextViewBudget = (TextView)view.findViewById(R.id.textViewBudget);
+        mTextViewLanguage = (TextView)view.findViewById(R.id.textViewLanguage);
 
         Toolbar toolbar = (Toolbar)view.findViewById(R.id.toolbar);
         ((MainActivity)getActivity()).setSupportActionBar(toolbar);
@@ -84,14 +92,15 @@ public class MovieDetailFragment extends Fragment {
                     @Override
                     public void onResponse(Call<MovieDetailPayloadModel> call, Response<MovieDetailPayloadModel> response) {
                         if (response.isSuccessful()){
-                            Log.e(TAG, "onResponse: "+response.body().getBackdrop_path() );
                             mTextViewOverView.setText(response.body().getOverview());
                             mTextViewMovieTitle.setText(response.body().getOriginal_title());
                             mTextViewMoviName.setText(response.body().getTitle());
                             mTextViewVoteAvg.setText(String.format("%.1f", response.body().getVote_average()));
                             mTextViewPopularity.setText(String.format("%.0f", response.body().getPopularity())+"%");
-
-
+                            mTextViewPcompany.setText(response.body().getProduction_companies().get(0).getName());
+                            mtextViewPCountry.setText(response.body().getProduction_countries().get(0).getName());
+                            mTextViewBudget.setText("$ "+String.valueOf(response.body().getBudget()));
+                            mTextViewLanguage.setText(response.body().getOriginal_language());
                             String year[] = response.body().getRelease_date().split("-");
                             mTextViewReleaseYear.setText("("+year[0]+")");
 
@@ -104,7 +113,6 @@ public class MovieDetailFragment extends Fragment {
 
                                 }
                             }
-                            //mTextViewMovieCategory.setText(response.body().getGenres().ge);
                             Glide.with(getActivity())
                                     .load("http://image.tmdb.org/t/p/w500"+ response.body().getPoster_path())
                                     .thumbnail(0.1f)
@@ -135,7 +143,6 @@ public class MovieDetailFragment extends Fragment {
 
                             mSimilarMovieAdapter = new SimilarMovieAdapter(getActivity(), response.body().getResults());
                             mSimilarMovieRecyclerView.setAdapter(mSimilarMovieAdapter);
-                            Log.e(TAG, "onResponse:2 "+response.body().getPage() );
                         }
                     }
 

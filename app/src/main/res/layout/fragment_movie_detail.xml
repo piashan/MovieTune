@@ -157,7 +157,7 @@
     android:layout_marginRight="16dp"
     android:layout_marginTop="8dp"
     android:text="goog"
-    android:textColor="#b1b1b1"
+    android:textColor="#c7c7c7"
     android:textSize="15sp" />
 
     <View
@@ -186,12 +186,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#b1b1b1"
+                    android:textColor="#c7c7c7"
                     android:text="Production Company"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#b1b1b1"
+                    android:id="@+id/textViewPCompanyName"
+                    android:textColor="#c7c7c7"
                     android:textSize="17sp"
                     android:text="Columbia Picturs"/>
             </LinearLayout>
@@ -199,16 +200,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="20dp"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#b1b1b1"
+                    android:textColor="#c7c7c7"
                     android:text="Production Countries"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#b1b1b1"
+                    android:id="@+id/textViewPCountry"
+                    android:textColor="#c7c7c7"
                     android:textSize="17sp"
                     android:text="USA"/>
             </LinearLayout>
@@ -230,12 +233,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#b1b1b1"
+                    android:textColor="#c7c7c7"
                     android:text="Budget"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#b1b1b1"
+                    android:id="@+id/textViewBudget"
+                    android:textColor="#c7c7c7"
                     android:textSize="17sp"
                     android:text="$15400000"/>
             </LinearLayout>
@@ -247,13 +251,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:textColor="#b1b1b1"
+                    android:textColor="#c7c7c7"
                     android:text="Language"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#b1b1b1"
+                    android:id="@+id/textViewLanguage"
+                    android:textColor="#c7c7c7"
                     android:textSize="17sp"
                     android:text="English"/>
             </LinearLayout>
@@ -275,7 +279,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"
         android:text="Similar Movie"
-        android:textColor="#b1b1b1"
+        android:textColor="#c7c7c7"
         android:textSize="14sp"/>
     <android.support.v7.widget.RecyclerView
         android:layout_width="fill_parent"
