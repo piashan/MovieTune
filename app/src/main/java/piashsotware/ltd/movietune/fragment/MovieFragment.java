@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import piashsotware.ltd.movietune.R;
 import piashsotware.ltd.movietune.adapter.MovieAdapter;
@@ -78,7 +77,7 @@ public class MovieFragment extends Fragment {
     }
 
 
-    public void newRelieseMovie(){
+    private void newRelieseMovie(){
         mApiMovieInterface.newRelieseMovieNetworkCall().enqueue(
                 new Callback<NewReliesePayloadModel>() {
                     @Override
@@ -102,7 +101,7 @@ public class MovieFragment extends Fragment {
         );
     }
 
-    public void topRatedMovie(){
+    private void topRatedMovie(){
         mApiMovieInterface.topRatedMovieNetworkCall().enqueue(
                 new Callback<NewReliesePayloadModel>() {
                     @Override
@@ -124,7 +123,7 @@ public class MovieFragment extends Fragment {
         );
     }
 
-    public void upCommingMovie(){
+    private void upCommingMovie(){
         mApiMovieInterface.upCommingMovieNetworkCall().enqueue(
                 new Callback<NewReliesePayloadModel>() {
                     @Override
@@ -146,7 +145,7 @@ public class MovieFragment extends Fragment {
         );
     }
 
-    public void recyclerViewClick(){
+    private void recyclerViewClick(){
         mMovieAdapter.setOnItemClickListener(
                 new MovieAdapter.RVClickListener() {
                     @Override

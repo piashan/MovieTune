@@ -16,34 +16,36 @@ import piashsotware.ltd.movietune.R;
 import piashsotware.ltd.movietune.datamodel.subdatamodel.InformationModel;
 
 /**
- * Created by piash on 11/24/16.
+ * Created by piash on 11/25/16.
  */
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder>{
+public class SimilarMovieAdapter extends RecyclerView.Adapter<SimilarMovieAdapter.SimilarViewHolder> {
+
     private Context mContext;
     private List<InformationModel> mInformationList;
     private RVClickListener mRVClickListener;
 
-    public MovieAdapter(Context mContex, List<InformationModel> mStringList) {
-        this.mContext = mContex;
-        this.mInformationList = mStringList;
+    public SimilarMovieAdapter(Context mContext, List<InformationModel> mInformationList) {
+        this.mContext = mContext;
+        this.mInformationList = mInformationList;
     }
 
     @Override
-    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_movie_adapter, parent, false);
+    public SimilarViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_similarmovie_adapter, parent, false);
 
-        return new MovieViewHolder(view);
+        return new SimilarViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(MovieViewHolder holder, int position) {
+    public void onBindViewHolder(SimilarViewHolder holder, int position) {
 
-
-
+        DrawableRequestBuilder<String> thumbnailRequest = Glide
+                .with(mContext)
+                .load("http://image.tmdb.org/t/p/w500"+ mInformationList.get(position).getPoster_path());
         Glide.with(mContext)
                 .load("http://image.tmdb.org/t/p/w500"+ mInformationList.get(position).getPoster_path())
-                .thumbnail(0.1f)
+                .thumbnail(thumbnailRequest)
                 .into(holder.mImageViewMoviePoster);
     }
 
@@ -51,26 +53,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     public int getItemCount() {
         return mInformationList.size();
     }
-
     public void setOnItemClickListener(RVClickListener myClickListener) {
         this.mRVClickListener = myClickListener;
     }
     public interface RVClickListener {
         void onItemClick(int position, View v);
     }
-
-    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class SimilarViewHolder extends RecyclerView.ViewHolder {
         private ImageView mImageViewMoviePoster;
-        public MovieViewHolder(View itemView) {
+        public SimilarViewHolder(View itemView) {
             super(itemView);
-            mImageViewMoviePoster = (ImageView)itemView.findViewById(R.id.imageViewForMovie);
-            itemView.setOnClickListener(this);
-
-        }
-
-        @Override
-        public void onClick(View view) {
-            mRVClickListener.onItemClick(getAdapterPosition(), view);
+            mImageViewMoviePoster = (ImageView)itemView.findViewById(R.id.imageViewForSimilarMovie);
         }
     }
 }

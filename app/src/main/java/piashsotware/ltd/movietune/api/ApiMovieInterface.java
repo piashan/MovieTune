@@ -25,4 +25,7 @@ public interface ApiMovieInterface {
 
     @GET("259316?api_key=c37d3b40004717511adb2c1fbb15eda4")
     Call<MovieDetailPayloadModel> movieDetailNetworkCall();
+
+    @GET("259316/similar?api_key=c37d3b40004717511adb2c1fbb15eda4&page= 1")
+    Call<NewReliesePayloadModel> similarMovieNetworkCall();
 }

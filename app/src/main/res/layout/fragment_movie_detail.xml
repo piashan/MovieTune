@@ -2,10 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/background_image"
     tools:context="piashsotware.ltd.movietune.fragment.MovieDetailFragment">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="?attr/colorPrimary">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewMovieTitle"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:text="@string/app_name"/>
+    </android.support.v7.widget.Toolbar>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -18,21 +35,47 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:orientation="horizontal"
             android:background="#a1141515"
-            android:layout_marginTop="150dp">
+            android:layout_marginTop="190dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:orientation="vertical"
                 android:layout_gravity="left">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewMovieName"
+                        android:layout_gravity="center_vertical"
+                        android:ellipsize="end"
+                        android:maxLength="15"
+                        android:text="Inception"
+                        android:textSize="20sp"
+                        android:textColor="@android:color/white"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/textViewReleaseYear"
+                   android:layout_marginLeft="6dp"
+                   android:textSize="20sp"
+                   android:textColor="@android:color/white"
+                   android:text="2010"/>
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="Inception"
-                    android:textSize="35sp"
+                    android:id="@+id/textViewMoiveCategory"
+                    android:textSize="10sp"
                     android:textColor="@android:color/white"/>
             </LinearLayout>
             <LinearLayout
@@ -40,42 +83,66 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:layout_gravity="right"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="30dp"
                 android:orientation="horizontal">
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/voteAvgTitle"
+                        android:text="Vote Avg."
+                        android:textSize="10sp"
+                        android:textColor="@android:color/white" />
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/voteAvgTitle"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/circle"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/textViewVoteAvg"
                         android:text="41"
-                        android:textSize="25sp"
+                        android:paddingTop="8dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp"
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/popularityTitle"
+                        android:text="Popularity"
+                        android:textSize="10sp"
+                        android:textColor="@android:color/white"/>
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:id="@+id/imagepoligon"
+                        android:layout_below="@+id/popularityTitle"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/poligon"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/textViewPopularity"
+                        android:textColor="@android:color/white"
+                        android:paddingTop="8dp"
                         android:text="8.7"
-                        android:textSize="25sp"
+                        android:textSize="15sp"
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>
-
-
 
             </LinearLayout>
 
@@ -85,21 +152,37 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/textViewOverView"
+    android:maxLines="3"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
     android:text="goog"
-    android:textColor="@android:color/white"
-    android:textSize="18sp"
-    android:layout_marginTop="16dp"/>
+    android:textColor="#b1b1b1"
+    android:textSize="15sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@android:color/white"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="#b3b3b3"
         android:layout_marginTop="16dp" />
 
-    <android.support.v7.widget.RecyclerView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/similarMovie">
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Similar Movie"
+        android:textColor="#b1b1b1"
+        android:textSize="14sp"/>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:scrollbars="none"
+        android:id="@+id/similarMovieRecyclerView">
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
