@@ -1,8 +1,11 @@
 package piashsotware.ltd.movietune.fragment;
 
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,7 +31,7 @@ import retrofit2.Retrofit;
  */
 public class MovieFragment extends Fragment {
 
-    private final String TAG = "Test";
+    private final String TAG = "MovieFragment";
     private ApiMovieInterface mApiMovieInterface;
     private RecyclerView mMovieRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -149,7 +152,11 @@ public class MovieFragment extends Fragment {
                     @Override
                     public void onItemClick(int position, View v) {
 
-                        Toast.makeText(getActivity(), "clcik is working", Toast.LENGTH_SHORT).show();
+                        FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.activity_main, new MovieDetailFragment());
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+
                     }
                 }
         );

@@ -23,7 +23,7 @@ public class MovieDetailPayloadModel {
     private String original_language;
     private String original_title;
     private String overview;
-    private int popularity;
+    private double popularity;
     private String poster_path;
     private List<ProductionCompanies> production_companies;
     private String release_date;
@@ -37,7 +37,7 @@ public class MovieDetailPayloadModel {
     private double vote_average;
     private int vote_count;
 
-    public MovieDetailPayloadModel(boolean adult, String backdrop_path, String belongs_to_collection, int budget, List<Genres> genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, int popularity, String poster_path, List<ProductionCompanies> production_companies, String release_date, int revenue, int runtime, List<SpokenLanguage> spoken_languages, String status, String tagline, String title, boolean video, double vote_average, int vote_count) {
+    public MovieDetailPayloadModel(boolean adult, String backdrop_path, String belongs_to_collection, int budget, List<Genres> genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, double popularity, String poster_path, List<ProductionCompanies> production_companies, String release_date, int revenue, int runtime, List<SpokenLanguage> spoken_languages, String status, String tagline, String title, boolean video, double vote_average, int vote_count) {
         this.adult = adult;
         this.backdrop_path = backdrop_path;
         this.belongs_to_collection = belongs_to_collection;
@@ -108,7 +108,7 @@ public class MovieDetailPayloadModel {
         return overview;
     }
 
-    public int getPopularity() {
+    public double getPopularity() {
         return popularity;
     }
 

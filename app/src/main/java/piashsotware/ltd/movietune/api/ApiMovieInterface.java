@@ -3,6 +3,7 @@ package piashsotware.ltd.movietune.api;
 
 import java.util.List;
 
+import piashsotware.ltd.movietune.datamodel.MovieDetailPayloadModel;
 import piashsotware.ltd.movietune.datamodel.NewReliesePayloadModel;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -21,4 +22,7 @@ public interface ApiMovieInterface {
 
     @GET("upcoming?api_key=c37d3b40004717511adb2c1fbb15eda4&page=1")
     Call<NewReliesePayloadModel> upCommingMovieNetworkCall();
+
+    @GET("259316?api_key=c37d3b40004717511adb2c1fbb15eda4")
+    Call<MovieDetailPayloadModel> movieDetailNetworkCall();
 }

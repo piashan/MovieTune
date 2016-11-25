@@ -1,29 +1,29 @@
 package piashsotware.ltd.movietune;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+
+import android.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import piashsotware.ltd.movietune.fragment.MainFragment;
 
-import piashsotware.ltd.movietune.adapter.TabFragmentPageAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TabFragmentPageAdapter mAdapter;
-    private ViewPager mViewPager;
-    private TabLayout mTabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        mAdapter = new TabFragmentPageAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(mAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
+        android.app.FragmentManager fm = getFragmentManager();
+        android.app.FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.activity_main, new MainFragment());
+        ft.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
