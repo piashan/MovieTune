@@ -59,11 +59,17 @@ public class SimilarMovieAdapter extends RecyclerView.Adapter<SimilarMovieAdapte
     public interface RVClickListener {
         void onItemClick(int position, View v);
     }
-    public class SimilarViewHolder extends RecyclerView.ViewHolder {
+    public class SimilarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView mImageViewMoviePoster;
         public SimilarViewHolder(View itemView) {
             super(itemView);
             mImageViewMoviePoster = (ImageView)itemView.findViewById(R.id.imageViewForSimilarMovie);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+           mRVClickListener.onItemClick(getAdapterPosition(), view);
         }
     }
 }

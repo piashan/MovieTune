@@ -2,6 +2,7 @@ package piashsotware.ltd.movietune.fragment;
 
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,6 +52,7 @@ public class MovieDetailFragment extends Fragment {
     private TextView mtextViewPCountry;
     private TextView mTextViewBudget;
     private TextView mTextViewLanguage;
+    private Bundle mBundleForData;
     public MovieDetailFragment() {
         // Required empty public constructor
     }
@@ -80,6 +82,8 @@ public class MovieDetailFragment extends Fragment {
 
         Retrofit retrofit = ApiClient.getInstance(getActivity());
         mApiMovieInterface = retrofit.create(ApiMovieInterface.class);
+        mBundleForData = new Bundle();
+        mBundleForData = getArguments();
         detailInformation();
         similarMovie();
 
@@ -87,11 +91,13 @@ public class MovieDetailFragment extends Fragment {
     }
 
     private void detailInformation(){
-        mApiMovieInterface.movieDetailNetworkCall().enqueue(
+        mApiMovieInterface.movieDetailNetworkCall(getArguments().getInt("movieId")).enqueue(
                 new Callback<MovieDetailPayloadModel>() {
                     @Override
                     public void onResponse(Call<MovieDetailPayloadModel> call, Response<MovieDetailPayloadModel> response) {
                         if (response.isSuccessful()){
+
+
                             mTextViewOverView.setText(response.body().getOverview());
                             mTextViewMovieTitle.setText(response.body().getOriginal_title());
                             mTextViewMoviName.setText(response.body().getTitle());
@@ -113,8 +119,9 @@ public class MovieDetailFragment extends Fragment {
 
                                 }
                             }
+                            Log.e(TAG, "onResponse: image "+response.body().getPoster_path() );
                             Glide.with(getActivity())
-                                    .load("http://image.tmdb.org/t/p/w500"+ response.body().getPoster_path())
+                                    .load("http://image.tmdb.org/t/p/w500"+ response.body().getBackdrop_path())
                                     .thumbnail(0.1f)
                                     .into(mImageViewDetailPoster);
                         }
@@ -134,15 +141,29 @@ public class MovieDetailFragment extends Fragment {
         mSimilarMovieRecyclerView.setHasFixedSize(true);
         mLayoutManager =  new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mSimilarMovieRecyclerView.setLayoutManager(mLayoutManager);
-        mApiMovieInterface.similarMovieNetworkCall().enqueue(
+        mApiMovieInterface.similarMovieNetworkCall(getArguments().getInt("movieId")).enqueue(
                 new Callback<NewReliesePayloadModel>() {
                     @Override
-                    public void onResponse(Call<NewReliesePayloadModel> call, Response<NewReliesePayloadModel> response) {
+                    public void onResponse(Call<NewReliesePayloadModel> call, final Response<NewReliesePayloadModel> response) {
 
                         if (response.isSuccessful()){
 
                             mSimilarMovieAdapter = new SimilarMovieAdapter(getActivity(), response.body().getResults());
                             mSimilarMovieRecyclerView.setAdapter(mSimilarMovieAdapter);
+                            mSimilarMovieAdapter.setOnItemClickListener(
+                                    new SimilarMovieAdapter.RVClickListener() {
+                                        @Override
+                                        public void onItemClick(int position, View v) {
+                                            mBundleForData.putInt("movieId", response.body().getResults().get(position).getId());
+                                            MovieDetailFragment fragment = new MovieDetailFragment();
+                                            fragment.setArguments(mBundleForData);
+                                            FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+                                            fragmentTransaction.replace(R.id.activity_main, fragment);
+                                            fragmentTransaction.addToBackStack(null);
+                                            fragmentTransaction.commit();
+                                        }
+                                    }
+                            );
                         }
                     }
 

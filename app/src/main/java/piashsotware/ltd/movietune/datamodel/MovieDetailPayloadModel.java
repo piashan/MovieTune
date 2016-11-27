@@ -2,6 +2,7 @@ package piashsotware.ltd.movietune.datamodel;
 
 import java.util.List;
 
+import piashsotware.ltd.movietune.datamodel.subdatamodel.Belong_to_Collection;
 import piashsotware.ltd.movietune.datamodel.subdatamodel.Genres;
 import piashsotware.ltd.movietune.datamodel.subdatamodel.ProductionCompanies;
 import piashsotware.ltd.movietune.datamodel.subdatamodel.ProductionCountries;
@@ -15,7 +16,7 @@ public class MovieDetailPayloadModel {
 
     private boolean adult;
     private String backdrop_path;
-    private String belongs_to_collection;
+    private Belong_to_Collection belongs_to_collection;
     private int budget;
     private List<Genres> genres;
     private String homepage;
@@ -39,7 +40,7 @@ public class MovieDetailPayloadModel {
     private double vote_average;
     private int vote_count;
 
-    public MovieDetailPayloadModel(boolean adult, String backdrop_path, String belongs_to_collection, int budget, List<Genres> genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, double popularity, String poster_path, List<ProductionCompanies> production_companies, List<ProductionCountries> production_countries, String release_date, int revenue, int runtime, List<SpokenLanguage> spoken_languages, String status, String tagline, String title, boolean video, double vote_average, int vote_count) {
+    public MovieDetailPayloadModel(boolean adult, String backdrop_path, Belong_to_Collection belongs_to_collection, int budget, List<Genres> genres, String homepage, int id, String imdb_id, String original_language, String original_title, String overview, double popularity, String poster_path, List<ProductionCompanies> production_companies, List<ProductionCountries> production_countries, String release_date, int revenue, int runtime, List<SpokenLanguage> spoken_languages, String status, String tagline, String title, boolean video, double vote_average, int vote_count) {
         this.adult = adult;
         this.backdrop_path = backdrop_path;
         this.belongs_to_collection = belongs_to_collection;
@@ -75,7 +76,7 @@ public class MovieDetailPayloadModel {
         return backdrop_path;
     }
 
-    public String getBelongs_to_collection() {
+    public Belong_to_Collection getBelongs_to_collection() {
         return belongs_to_collection;
     }
 
@@ -172,7 +173,7 @@ public class MovieDetailPayloadModel {
         return "MovieDetailPayloadModel{" +
                 "adult=" + adult +
                 ", backdrop_path='" + backdrop_path + '\'' +
-                ", belongs_to_collection='" + belongs_to_collection + '\'' +
+                ", belongs_to_collection=" + belongs_to_collection +
                 ", budget=" + budget +
                 ", genres=" + genres +
                 ", homepage='" + homepage + '\'' +

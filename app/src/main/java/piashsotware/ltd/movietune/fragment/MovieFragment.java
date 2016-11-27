@@ -37,6 +37,7 @@ public class MovieFragment extends Fragment {
     private MovieAdapter mMovieAdapter;
     private ProgressBar mProgressBar;
     private int mAdapterPosition;
+    private Bundle mBundleSend;
 
     public MovieFragment() {
         // Required empty public constructor
@@ -63,6 +64,7 @@ public class MovieFragment extends Fragment {
 
         mLayoutManager =  new GridLayoutManager(getActivity(), 2);
         mMovieRecyclerView.setLayoutManager(mLayoutManager);
+        mBundleSend = new Bundle();
 
 
         if (mAdapterPosition == 0){
@@ -81,13 +83,26 @@ public class MovieFragment extends Fragment {
         mApiMovieInterface.newRelieseMovieNetworkCall().enqueue(
                 new Callback<NewReliesePayloadModel>() {
                     @Override
-                    public void onResponse(Call<NewReliesePayloadModel> call, Response<NewReliesePayloadModel> response) {
+                    public void onResponse(Call<NewReliesePayloadModel> call, final Response<NewReliesePayloadModel> response) {
                         if (response.isSuccessful()){
                             mProgressBar.setVisibility(View.GONE);
                             mMovieRecyclerView.setVisibility(View.VISIBLE);
                             mMovieAdapter = new MovieAdapter(getActivity(), response.body().getResults());
                             mMovieRecyclerView.setAdapter(mMovieAdapter);
-                            recyclerViewClick();
+                            mMovieAdapter.setOnItemClickListener(
+                                    new MovieAdapter.RVClickListener() {
+                                        @Override
+                                        public void onItemClick(int position, View v) {
+                                            mBundleSend.putInt("movieId", response.body().getResults().get(position).getId());
+                                            MovieDetailFragment fragment = new MovieDetailFragment();
+                                            fragment.setArguments(mBundleSend);
+                                            FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+                                            fragmentTransaction.replace(R.id.activity_main, fragment);
+                                            fragmentTransaction.addToBackStack(null);
+                                            fragmentTransaction.commit();
+                                        }
+                                    }
+                            );
                         }
 
                     }
@@ -105,13 +120,26 @@ public class MovieFragment extends Fragment {
         mApiMovieInterface.topRatedMovieNetworkCall().enqueue(
                 new Callback<NewReliesePayloadModel>() {
                     @Override
-                    public void onResponse(Call<NewReliesePayloadModel> call, Response<NewReliesePayloadModel> response) {
+                    public void onResponse(Call<NewReliesePayloadModel> call, final Response<NewReliesePayloadModel> response) {
                         if (response.isSuccessful()){
                             mProgressBar.setVisibility(View.GONE);
                             mMovieRecyclerView.setVisibility(View.VISIBLE);
                             mMovieAdapter = new MovieAdapter(getActivity(), response.body().getResults());
                             mMovieRecyclerView.setAdapter(mMovieAdapter);
-                            recyclerViewClick();
+                            mMovieAdapter.setOnItemClickListener(
+                                    new MovieAdapter.RVClickListener() {
+                                        @Override
+                                        public void onItemClick(int position, View v) {
+                                            mBundleSend.putInt("movieId", response.body().getResults().get(position).getId());
+                                            MovieDetailFragment fragment = new MovieDetailFragment();
+                                            fragment.setArguments(mBundleSend);
+                                            FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+                                            fragmentTransaction.replace(R.id.activity_main, fragment);
+                                            fragmentTransaction.addToBackStack(null);
+                                            fragmentTransaction.commit();
+                                        }
+                                    }
+                            );
                         }
                     }
 
@@ -127,13 +155,28 @@ public class MovieFragment extends Fragment {
         mApiMovieInterface.upCommingMovieNetworkCall().enqueue(
                 new Callback<NewReliesePayloadModel>() {
                     @Override
-                    public void onResponse(Call<NewReliesePayloadModel> call, Response<NewReliesePayloadModel> response) {
+                    public void onResponse(Call<NewReliesePayloadModel> call, final Response<NewReliesePayloadModel> response) {
                         if (response.isSuccessful()){
                             mProgressBar.setVisibility(View.GONE);
                             mMovieRecyclerView.setVisibility(View.VISIBLE);
                             mMovieAdapter = new MovieAdapter(getActivity(), response.body().getResults());
                             mMovieRecyclerView.setAdapter(mMovieAdapter);
-                            recyclerViewClick();
+                            mMovieAdapter.setOnItemClickListener(
+                                    new MovieAdapter.RVClickListener() {
+                                        @Override
+                                        public void onItemClick(int position, View v) {
+
+                                            Log.e(TAG, "onItemClick: "+response.body().getResults().get(position).getId() );
+                                            mBundleSend.putInt("movieId", response.body().getResults().get(position).getId());
+                                            MovieDetailFragment fragment = new MovieDetailFragment();
+                                            fragment.setArguments(mBundleSend);
+                                            FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+                                            fragmentTransaction.replace(R.id.activity_main, fragment);
+                                            fragmentTransaction.addToBackStack(null);
+                                            fragmentTransaction.commit();
+                                        }
+                                    }
+                            );
                         }
                     }
 
@@ -145,12 +188,14 @@ public class MovieFragment extends Fragment {
         );
     }
 
-    private void recyclerViewClick(){
+    /*private void recyclerViewClick(final int movie){
         mMovieAdapter.setOnItemClickListener(
                 new MovieAdapter.RVClickListener() {
                     @Override
                     public void onItemClick(int position, View v) {
 
+                        Bundle bundleSend = new Bundle();
+                        bundleSend.putInt("movieId", movie);
                         FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.activity_main, new MovieDetailFragment());
                         fragmentTransaction.addToBackStack(null);
@@ -158,6 +203,6 @@ public class MovieFragment extends Fragment {
 
                     }
                 }
-        );
-    }
+        );*/
+    //}
 }
