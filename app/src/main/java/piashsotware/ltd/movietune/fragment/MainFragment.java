@@ -20,7 +20,7 @@ import piashsotware.ltd.movietune.adapter.TabFragmentPageAdapter;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends android.support.v4.app.Fragment {
     private TabFragmentPageAdapter mAdapter;
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
@@ -41,7 +41,7 @@ public class MainFragment extends Fragment {
         Toolbar toolbar = (Toolbar)view.findViewById(R.id.toolbar);
         ((MainActivity)getActivity()).setSupportActionBar(toolbar);
 
-        mAdapter = new TabFragmentPageAdapter(getChildFragmentManager());
+        mAdapter = new TabFragmentPageAdapter(getFragmentManager());
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         return view;

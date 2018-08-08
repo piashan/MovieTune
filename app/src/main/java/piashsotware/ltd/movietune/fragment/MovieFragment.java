@@ -2,7 +2,6 @@ package piashsotware.ltd.movietune.fragment;
 
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
@@ -14,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import piashsotware.ltd.movietune.MainActivity;
 import piashsotware.ltd.movietune.R;
 import piashsotware.ltd.movietune.adapter.MovieAdapter;
 import piashsotware.ltd.movietune.api.ApiClient;
@@ -28,7 +28,7 @@ import retrofit2.Retrofit;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieFragment extends Fragment {
+public class MovieFragment extends android.support.v4.app.Fragment {
 
     private final String TAG = "MovieFragment";
     private ApiMovieInterface mApiMovieInterface;
@@ -96,7 +96,8 @@ public class MovieFragment extends Fragment {
                                             mBundleSend.putInt("movieId", response.body().getResults().get(position).getId());
                                             MovieDetailFragment fragment = new MovieDetailFragment();
                                             fragment.setArguments(mBundleSend);
-                                            FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+                                            //((MainActivity)getActivity()).addFragment( fragment, true);
+                                            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                                             fragmentTransaction.replace(R.id.activity_main, fragment);
                                             fragmentTransaction.addToBackStack(null);
                                             fragmentTransaction.commit();
@@ -132,8 +133,9 @@ public class MovieFragment extends Fragment {
                                         public void onItemClick(int position, View v) {
                                             mBundleSend.putInt("movieId", response.body().getResults().get(position).getId());
                                             MovieDetailFragment fragment = new MovieDetailFragment();
+                                            //((MainActivity)getActivity()).addFragment( fragment, true);
                                             fragment.setArguments(mBundleSend);
-                                            FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+                                            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                                             fragmentTransaction.replace(R.id.activity_main, fragment);
                                             fragmentTransaction.addToBackStack(null);
                                             fragmentTransaction.commit();
@@ -168,9 +170,11 @@ public class MovieFragment extends Fragment {
 
                                             Log.e(TAG, "onItemClick: "+response.body().getResults().get(position).getId() );
                                             mBundleSend.putInt("movieId", response.body().getResults().get(position).getId());
+
                                             MovieDetailFragment fragment = new MovieDetailFragment();
                                             fragment.setArguments(mBundleSend);
-                                            FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+                                            fragment.setArguments(mBundleSend);
+                                            android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                                             fragmentTransaction.replace(R.id.activity_main, fragment);
                                             fragmentTransaction.addToBackStack(null);
                                             fragmentTransaction.commit();
@@ -187,6 +191,7 @@ public class MovieFragment extends Fragment {
                 }
         );
     }
+
 
     /*private void recyclerViewClick(final int movie){
         mMovieAdapter.setOnItemClickListener(

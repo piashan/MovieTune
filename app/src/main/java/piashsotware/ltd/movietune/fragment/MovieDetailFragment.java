@@ -33,7 +33,7 @@ import retrofit2.Retrofit;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieDetailFragment extends Fragment {
+public class MovieDetailFragment extends android.support.v4.app.Fragment {
 
     private final String TAG = "MovieDetail";
     private ApiMovieInterface mApiMovieInterface;
@@ -84,6 +84,7 @@ public class MovieDetailFragment extends Fragment {
         mApiMovieInterface = retrofit.create(ApiMovieInterface.class);
         mBundleForData = new Bundle();
         mBundleForData = getArguments();
+        Log.e(TAG, "onCreateView: "+mBundleForData.getInt("movieId") );
         detailInformation();
         similarMovie();
 
@@ -120,10 +121,10 @@ public class MovieDetailFragment extends Fragment {
                                 }
                             }
                             Log.e(TAG, "onResponse: image "+response.body().getPoster_path() );
-                            Glide.with(getActivity())
+                          /*  Glide.with(getActivity())
                                     .load("http://image.tmdb.org/t/p/w500"+ response.body().getBackdrop_path())
                                     .thumbnail(0.1f)
-                                    .into(mImageViewDetailPoster);
+                                    .into(mImageViewDetailPoster);*/
                         }
                     }
 
@@ -157,10 +158,11 @@ public class MovieDetailFragment extends Fragment {
                                             mBundleForData.putInt("movieId", response.body().getResults().get(position).getId());
                                             MovieDetailFragment fragment = new MovieDetailFragment();
                                             fragment.setArguments(mBundleForData);
-                                            FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
+                                            ((MainActivity)getActivity()).addFragment( fragment, true);
+                                            /*FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
                                             fragmentTransaction.replace(R.id.activity_main, fragment);
                                             fragmentTransaction.addToBackStack(null);
-                                            fragmentTransaction.commit();
+                                            fragmentTransaction.commit();*/
                                         }
                                     }
                             );
